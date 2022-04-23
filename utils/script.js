@@ -6,6 +6,15 @@ import {
   setDoc,
 } from "https://www.gstatic.com/firebasejs/9.6.3/firebase-firestore.js";
 
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  getAuth,
+} from "https://www.gstatic.com/firebasejs/9.6.3/firebase-auth.js";
+
+function refPage() {
+  window.location.reload();
+}
 const firebaseConfig = {
   apiKey: "AIzaSyDy_t2LabrZFyG4S2NCD9zXXuweSa8cULk",
 
@@ -40,6 +49,7 @@ const createUserDocument = async (userInfo) => {
       console.error(err);
     }
   }
+  refPage();
   return userDocRef;
 };
 
@@ -56,5 +66,23 @@ function dataCall() {
     date,
   };
   const userDocRef = createUserDocument(userInfo);
-  //   document.getElementById("modal-fullscreen-xs").style.display = "none";
 }
+
+const provider = new GoogleAuthProvider();
+
+provider.setCustomParameters({
+  prompt: "select_account",
+});
+
+const auth = getAuth();
+const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+
+const googleOAuthPopup = async () => {
+  const { user } = await signInWithGooglePopup();
+  const userDocRef = await createUserDocumentFromAuth(user);
+  console.log(user);
+};
+
+document.getElementById("google-sign-in").addEventListener("click", () => {
+  googleOAuthPopup();
+});
