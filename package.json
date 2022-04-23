@@ -1,0 +1,23 @@
+{
+  "name": "popup-form",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/babayaga110/popup-form.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/babayaga110/popup-form/issues"
+  },
+  "homepage": "https://github.com/babayaga110/popup-form#readme",
+  "dependencies": {
+    "firebase": "^9.6.11"
+  }
+}
